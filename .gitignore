@@ -1,0 +1,30 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+weights/
+*.pth
+*.pt
+*.onnx
+*.safetensors
+*.pkl
+
+# Test outputs
+client_output/
+tests/**/results/
+tests/services/test_data/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

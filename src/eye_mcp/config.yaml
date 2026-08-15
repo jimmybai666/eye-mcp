@@ -1,0 +1,62 @@
+# eye-mcp 配置文件
+
+# 日志配置
+log_level: INFO
+log_dir: ./logs
+
+# OCT 分割服务配置
+oct_seg:
+  # 模型权重路径（相对于项目根目录，或绝对路径）
+  weights_path: weights/oct_seg.pth
+  # 推理设备: auto / cuda / cpu
+  device: auto
+  # 输入图像尺寸
+  img_size: 512
+  # overlay 默认透明度
+  default_alpha: 0.4
+
+# Fovea 定位服务配置
+fovea_location:
+  weights_path: weights/fovea_location.pth
+  device: auto
+  img_size: 512
+  # 十字线宽度
+  line_width: 5
+
+# 视杯视盘分割服务配置
+optic_disc_cup_seg:
+  # 本地模型目录（包含 config.json + model.safetensors + preprocessor_config.json）
+  weights_dir: weights/optic_disc_cup_seg
+  # 推理设备: auto / cuda / cpu
+  device: auto
+  # overlay 默认透明度
+  default_alpha: 0.4
+  # HuggingFace 模型名（本地找不到时自动下载）
+  hf_model: pamixsun/segformer_for_optic_disc_cup_segmentation
+
+# 视网膜动静脉血管分割服务配置
+vessel_seg:
+  weights_path: weights/vessel_seg.pkl
+  device: auto
+  # overlay 默认透明度
+  default_alpha: 0.5
+  # 推理参数
+  patch_size: 256
+  stride_height: 50
+  stride_width: 50
+  batch_size: 8
+  # 模型训练使用的固定分辨率 (宽, 高)
+  target_resolution: [1620, 1444]
+  # HuggingFace Space（本地找不到时自动下载）
+  hf_repo: weidai00/RIP-AV-su-lab
+  hf_filename: G_best.pkl
+
+# 眼底病灶分割服务配置 (4类独立二值分割)
+lesion_seg:
+  weights_dir: weights/lesion_seg
+  device: auto
+  # 输入图像尺寸
+  img_size: 1024
+  # overlay 默认透明度
+  default_alpha: 0.7
+  threshold: 0.5
